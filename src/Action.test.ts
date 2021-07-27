@@ -8,9 +8,20 @@ class TestSucceeded extends Event {
 }
 
 class TestAction extends Action {
-  successEvents = [TestSucceeded]
+  successEvents = [TestSucceeded];
   async implementation(): Promise<void> {
 
+  }
+}
+
+class TestFailed extends Event {
+
+}
+
+class FailingTestAction extends Action {
+  failureEvents = [TestFailed];
+  async implementation(): Promise<void> {
+    throw new Error('failed');
   }
 }
 
@@ -59,4 +70,23 @@ describe('executing an Action', () => {
       });
     });
   });
+
+  describe('when the action executes unsuccessfully', () => {
+    const payload = {test: 'test'};
+    const action = FailingTestAction.create(payload);
+    const emitter = new EventEmitter();
+
+    emitter.emit = jest.fn(emitter.emit);
+
+    beforeAll(async () => {
+      await action.execute(emitter);
+    });
+
+    test('the failure events are emitted', () => {
+      expect(emitter.emit).toHaveBeenCalledWith('test:failed', {
+        error: new Error('failed'),
+      });
+    });
+  });
+
 });
