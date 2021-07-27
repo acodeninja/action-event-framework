@@ -1,0 +1,15 @@
+{
+  "name": "action-event-framework",
+  "version": "1.0.0",
+  "description": "A framework for an event driven architecture based on actions, events, subscribers, and interface separation.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acodeninja/action-event-framework.git"
+  },
+  "author": "Lawrence <lawrence@acode.ninja>",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/acodeninja/action-event-framework/issues"
+  },
+  "homepage": "https://github.com/acodeninja/action-event-framework#readme"
+}
