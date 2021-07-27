@@ -1,7 +1,7 @@
 on: [ push ]
 jobs:
   test:
-    name: 🧪 (${{ matrix.node }})
+    name: 🧪 (node-${{ matrix.node }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
