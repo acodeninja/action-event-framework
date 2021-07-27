@@ -1,7 +1,7 @@
-import {beforeAll, describe, expect, jest, test} from "@jest/globals";
-import {EventEmitter} from "events";
-import {Action} from "./Action";
-import {Event} from "./Event";
+import {beforeAll, describe, expect, jest, test} from '@jest/globals';
+import {EventEmitter} from 'events';
+import {Action} from './Action';
+import {Event} from './Event';
 
 class TestSucceeded extends Event {
 
@@ -10,7 +10,7 @@ class TestSucceeded extends Event {
 class TestAction extends Action {
   successEvents = [TestSucceeded];
   async implementation(): Promise<void> {
-
+    // do nothing
   }
 }
 

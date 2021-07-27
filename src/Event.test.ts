@@ -1,5 +1,5 @@
-import {describe, expect, test} from "@jest/globals";
-import {Event} from "./Event";
+import {describe, expect, test} from '@jest/globals';
+import {Event} from './Event';
 
 class TestEvent extends Event {
 

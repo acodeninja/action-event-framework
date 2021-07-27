@@ -1,6 +1,6 @@
-import {EventEmitter} from "events";
-import {parsePascal} from "./Helpers/String";
-import {Event} from "./Event";
+import {EventEmitter} from 'events';
+import {parsePascal} from './Helpers/String';
+import {Event} from './Event';
 
 export interface ActionInterface {
   readonly action: string;
@@ -17,7 +17,7 @@ export class Action implements ActionInterface {
   payload?: Record<string, unknown>;
   implementation?(): Promise<void>;
 
-  get action() {
+  get action(): string {
     return parsePascal(this.constructor.name).join(':');
   }
 
@@ -41,7 +41,7 @@ export class Action implements ActionInterface {
     }
   }
 
-  static create(payload: Record<string, unknown>) {
+  static create(payload: Record<string, unknown>): ActionInterface {
     const action = <ActionInterface>new this();
 
     action.payload = payload;

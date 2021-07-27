@@ -1,4 +1,4 @@
-import {parsePascal} from "./Helpers/String";
+import {parsePascal} from './Helpers/String';
 
 export interface EventInterface {
   readonly event: string;
@@ -8,7 +8,7 @@ export interface EventInterface {
 export class Event implements EventInterface {
   error?: Error;
 
-  get event() {
+  get event(): string {
     return parsePascal(this.constructor.name).join(':');
   }
 }

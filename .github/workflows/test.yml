@@ -1,8 +1,24 @@
 on: [ push ]
 jobs:
+  lint:
+    name: 💄 linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-${{ matrix.node }}-
+      - run: npm install
+      - run: npm run lint
   test:
     name: 🧪 (node-${{ matrix.node }})
     runs-on: ubuntu-latest
+    needs: [ lint ]
     strategy:
       matrix:
         node: [ 16, lts/fermium, lts/erbium ]

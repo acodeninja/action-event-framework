@@ -1,6 +1,6 @@
-import {describe, expect, test} from "@jest/globals";
+import {describe, expect, test} from '@jest/globals';
 
-import {parsePascal} from "./String";
+import {parsePascal} from './String';
 
 describe('parsing a pascal string', () => {
   const parsed = parsePascal('Test');
