@@ -6,10 +6,16 @@
     "type": "git",
     "url": "git+https://github.com/acodeninja/action-event-framework.git"
   },
+  "scripts": {
+    "test": "jest --passWithNoTests"
+  },
   "author": "Lawrence <lawrence@acode.ninja>",
   "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/acodeninja/action-event-framework/issues"
   },
-  "homepage": "https://github.com/acodeninja/action-event-framework#readme"
+  "homepage": "https://github.com/acodeninja/action-event-framework#readme",
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
 }
