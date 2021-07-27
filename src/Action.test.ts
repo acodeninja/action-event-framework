@@ -1,7 +1,14 @@
 import {beforeAll, describe, expect, jest, test} from "@jest/globals";
+import {EventEmitter} from "events";
 import {Action} from "./Action";
+import {Event} from "./Event";
+
+class TestSucceeded extends Event {
+
+}
 
 class TestAction extends Action {
+  successEvents = [TestSucceeded]
   async implementation(): Promise<void> {
 
   }
@@ -23,14 +30,33 @@ describe('creating an Action instance', () => {
 describe('executing an Action', () => {
   const payload = {test: 'test'};
   const action = TestAction.create(payload);
+  const emitter = new EventEmitter();
 
   action.implementation = jest.fn(action.implementation);
 
   beforeAll(async () => {
-    await action.execute();
+    await action.execute(emitter);
   });
 
   test('the action implementation has been called', () => {
     expect(action.implementation).toHaveBeenCalled();
+  });
+
+  describe('when the action executes successfully', () => {
+    const payload = {test: 'test'};
+    const action = TestAction.create(payload);
+    const emitter = new EventEmitter();
+
+    emitter.emit = jest.fn(emitter.emit);
+
+    beforeAll(async () => {
+      await action.execute(emitter);
+    });
+
+    test('the success events are emitted', () => {
+      expect(emitter.emit).toHaveBeenCalledWith('test:succeeded', {
+
+      });
+    });
   });
 });
