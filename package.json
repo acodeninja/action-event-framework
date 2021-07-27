@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "jest",
-    "lint": "eslint ."
+    "style-check": "eslint ."
   },
   "author": "Lawrence <lawrence@acode.ninja>",
   "license": "MPL-2.0",

@@ -1,7 +1,7 @@
 on: [ push ]
 jobs:
-  lint:
-    name: 💄 linting
+  style-check:
+    name: 💅 style check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,11 +14,11 @@ jobs:
           key: ${{ runner.os }}-16-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-16-
       - run: npm install
-      - run: npm run lint
+      - run: npm run style-check
   test:
-    name: 🧪 (node-${{ matrix.node }})
+    name: 🧪 test (node ${{ matrix.node }})
     runs-on: ubuntu-latest
-    needs: [ lint ]
+    needs: [ style-check ]
     strategy:
       matrix:
         node: [ 16, lts/fermium, lts/erbium ]
