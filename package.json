@@ -7,7 +7,7 @@
     "url": "git+https://github.com/acodeninja/action-event-framework.git"
   },
   "scripts": {
-    "test": "jest --passWithNoTests"
+    "test": "jest"
   },
   "author": "Lawrence <lawrence@acode.ninja>",
   "license": "MPL-2.0",
