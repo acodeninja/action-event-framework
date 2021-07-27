@@ -1,13 +1,13 @@
-import {EventEmitter} from 'events';
 import {parsePascal} from './Helpers/String';
 import {Event} from './Event';
+import {EventAdapterInterface} from './Adapters/EventAdapter';
 
 export interface ActionInterface {
   readonly action: string;
   successEvents?: Array<typeof Event>;
   failureEvents?: Array<typeof Event>;
   payload?: Record<string, unknown>;
-  execute(emitter: EventEmitter): Promise<void>;
+  execute(emitter: EventAdapterInterface): Promise<void>;
   implementation?(): Promise<void>;
 }
 
@@ -21,7 +21,7 @@ export class Action implements ActionInterface {
     return parsePascal(this.constructor.name).join(':');
   }
 
-  async execute(emitter: EventEmitter): Promise<void> {
+  async execute(emitter: EventAdapterInterface): Promise<void> {
     try {
       if (this.implementation) await this.implementation();
 

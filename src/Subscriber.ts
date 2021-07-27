@@ -1,5 +1,5 @@
-import {EventEmitter} from 'events';
 import {Event} from './Event';
+import {EventAdapterInterface} from './Adapters/EventAdapter';
 
 export interface SubscriberInterface {
   events: Array<typeof Event>;
@@ -15,7 +15,7 @@ export class Subscriber implements SubscriberInterface {
     if (this.implementation) await this.implementation(event);
   }
 
-  static create(emitter: EventEmitter): SubscriberInterface {
+  static create(emitter: EventAdapterInterface): SubscriberInterface {
     const subscriber = <SubscriberInterface>new this;
 
     subscriber.events?.forEach(event => {
